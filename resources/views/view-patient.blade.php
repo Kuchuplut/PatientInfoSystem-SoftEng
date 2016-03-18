@@ -20,20 +20,20 @@
 		                <th>Name</th>
 		                <th>Gender</th>
 		                <th>Address</th>
-		                <th>Diagnosis</th>
 		                <th>Date Created</th>
+		                <th>Diagnosis</th>
 		                <th>Actions</th>
 		            </tr>
 		        </thead>
 		        <tbody>
-		        	@foreach($admin_details as $admin_detail)
+		        	@foreach($patientList as $patient)
 		            <tr>
-		                <td>{!! $admin_detail->strLastName . ', ' . $admin_detail->strFirstName . ' ' . $admin_detail->strMiddleName !!}</td>
-		                <td>{!! $admin_detail->strEmail !!}</td>
-		                <td>{!! $admin_detail->strContactNo !!}</td>
-		                <td>{!! $admin_detail->txtPermanentAddress !!}</td>
-		                <td>{!! $admin_detail->zipCode !!}</td>
-		                <td>{!! $admin_detail->created_at !!}</td>
+		            	<td>{!! $patient->patientId !!}</td>
+		                <td>{!! $patient->strLastName . ', ' . $patient->strFirstName . ' ' . $patient->strMiddleName !!}</td>
+		                <td>{!! $patient->strGender !!}</td>
+		                <td>{!! $patient->txtAddress !!}</td>
+		                <td>{!! $patient->created_at !!}</td>
+		                <td><button href="#updatePatient" class="modal-trigger">View</button></td>
 		                <td> 
 			                <a href="#updatePatient" class="modal-trigger"><i class="material-icons blue-text text-darken-3">mode_edit</i></a>
 			                <a href=""><i class="material-icons red-text">delete</i></a>
@@ -59,7 +59,7 @@
 	 <div id="addPatient" class="modal">
 	   <div class="modal-content">
 	    <h4 class="col s12 blue-text text-darken-2">Add Patient</h4>
-	                  <form class="col s12 " action="signupSubmit" method="post" enctype="multipart/form-data">
+	                  <form class="col s12 " action="/createPatient" method="post" enctype="multipart/form-data">
 	                    <div class="row">
 
 	                      <div class="input-field col s12">
@@ -330,25 +330,6 @@
 	}
 </style>
 <script type="text/javascript">
-	function editId(id) {
-		var url =  "{!! route('admin.show', ':id') !!}";
-		var newValue = url.replace(':id', id);
-
-		$.ajax({
-			url: newValue,
-			type: "GET",
-			success: function(data) {
-				console.log(data);
-			},
-			error: function(xhr) {
-				console.log(xhr);
-			}
-		});
-	}
-
-	function deleteId(id) {
-
-	}
 
 	$(document).ready(function() {
 	    $('#example').DataTable( {

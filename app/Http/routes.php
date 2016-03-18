@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('view-patient');
 });
 
-Route::get('/createPatient', function(){
-	return view('createPatient');
-});
-
 Route::post('/createPatient', 'PatientController@createPatient');
 
-Route::get('/viewAllPatient', 'PatientController@getAllPatient');
+Route::get('/view-all-patient', 'PatientController@getAllPatient');
 
 Route::get('/updatePatient', 'PatientController@showPatientInfo');
 

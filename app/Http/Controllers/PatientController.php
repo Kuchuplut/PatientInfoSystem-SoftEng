@@ -48,7 +48,7 @@
 
 			$patientList = Patient::where('boolStatus', 1)
 								->get();
-			return view('viewPatient')->with('patientList', $patientList);
+			return view('view-patient')->with('patientList', $patientList);
 
 		}
 
