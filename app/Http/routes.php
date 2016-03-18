@@ -15,6 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/createPatient', function(){
+	return view('createPatient');
+});
+
+Route::post('/createPatient', 'PatientController@createPatient');
+
+Route::get('/viewAllPatient', 'PatientController@getAllPatient');
+
+Route::get('/updatePatient', 'PatientController@showPatientInfo');
+
+Route::post('/updatePatient', 'PatientController@updatePatientInfo');
+
+Route::get('/deactivatePatient', 'PatientController@deactivatePatient');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
