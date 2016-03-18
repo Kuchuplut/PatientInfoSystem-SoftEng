@@ -29,6 +29,12 @@ Route::post('/updatePatient', 'PatientController@updatePatientInfo');
 
 Route::get('/deactivatePatient', 'PatientController@deactivatePatient');
 
+Route::get('/add-diagnosis', 'MedicalRecordController@getPatientInfo');
+
+Route::post('/add-diagnosis', 'MedicalRecordController@createMedicalRecord');
+
+Route::get('/view-medical-history', 'PatientController@viewMedicalHistory');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

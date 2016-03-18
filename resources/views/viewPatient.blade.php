@@ -9,6 +9,7 @@
 				<td>Birthday</td>
 				<td>Address</td>
 				<td>Actions</td>
+
 			</thead>
 			<tbody>
 			@foreach($patientList as $patient)
@@ -28,7 +29,19 @@
 							<input type="hidden" value="{!! $patient->patientId !!}" name="patientId">
 							<input type="submit" value="DEACTIVATE">
 						</form>
+
+						<form action="add-diagnosis" method="GET">
+							<input type="hidden" value="{!! $patient->patientId !!}" name="patientId">
+							<input type="submit" value="DIAGNOSIS">
+						</form>
+
+
+						<form action="view-medical-history" method="GET">
+							<input type="hidden" value="{!! $patient->patientId !!}" name="patientId">
+							<input type="submit" value="View DIAGNOSIS">
+						</form>
 					</td>
+
 
 
 				</tr>

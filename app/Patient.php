@@ -3,8 +3,14 @@
 	namespace App;
 
 	use Illuminate\Database\Eloquent\Model;
+	use App\MedicalRecord;
 
 	class Patient extends Model{
+
+		public function medicalRecord(){
+			$this->hasMany('MedicalRecord');
+		}
+
 
 		protected $table = 'tblPatient';
 
@@ -16,6 +22,15 @@
 			$this->save();
 			return "success";
 
+
+		}
+
+		public static function getPatient($id){
+
+			$patient = Patient::where('patientId', $id)
+							->where('boolStatus', 1)
+							->first();
+			return $patient;
 
 		}
 

@@ -6,6 +6,7 @@
 
 	use App\Http\Requests;
 	use App\Patient;
+	use App\MedicalRecord;
 
 	class PatientController extends Controller{
 
@@ -33,6 +34,16 @@
 			
 		}
 
+
+		public function viewMedicalHistory(Request $request){
+
+			$patient= Patient::getPatient($request->patientId);
+			$medicalRecords = MedicalRecord::getAllMedicalRecord($patient->patientId);
+			return view('view-medical-history')->with('patient', $patient)
+						->with('medicalRecords', $medicalRecords);
+
+		}
+
 		public function getAllPatient(){
 
 			$patientList = Patient::where('boolStatus', 1)
@@ -43,9 +54,7 @@
 
 		public function showPatientInfo(Request $request){
 
-			$patient = Patient::where('patientId', $request->patientId)
-							->where('boolStatus', 1)
-							->first();
+			$patient = Patient::getPatient($request->patientId);
 			return view('updatePatient')->with('patient', $patient);
 
 		}
@@ -70,7 +79,6 @@
 				return redirect()->action('PatientController@getAllPatient');
 			}
 				
-
 		}
 
 
