@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('view-patient');
 });
 
 Route::get('/createPatient', function(){
