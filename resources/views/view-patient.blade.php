@@ -329,37 +329,5 @@
 		width: 1000px !important;
 	}
 </style>
-<script type="text/javascript">
-	function editId(id) {
-		var url =  "{!! route('admin.show', ':id') !!}";
-		var newValue = url.replace(':id', id);
 
-		$.ajax({
-			url: newValue,
-			type: "GET",
-			success: function(data) {
-				console.log(data);
-			},
-			error: function(xhr) {
-				console.log(xhr);
-			}
-		});
-	}
-
-	function deleteId(id) {
-
-	}
-
-	$(document).ready(function() {
-	    $('#example').DataTable( {
-	        dom: 'Bfrtip',
-	        buttons: [
-	            'copyHtml5',
-	            'excelHtml5',
-	            'csvHtml5',
-	            'pdfHtml5'
-	        ]
-	    } );
-	} );
-</script>
 @endsection
