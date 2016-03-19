@@ -15,12 +15,13 @@
 			$strStatus;
 			try{
 				$patient = new Patient;
+				$address = $request->strHouseNo . " " . $request->strStreet . " " . $request->strBarangay . " " . $request->strSubdivision . " " . $request->strCity . " " . $request->strProvince;
 				$patient->strFirstName = $request->strFirstName;
 				$patient->strMiddleName = $request->strMiddleName;
 				$patient->strLastName = $request->strLastName;
 				$patient->strGender = $request->strGender;
 				$patient->strContactNo = $request->strContactNo;
-				$patient->txtAddress = $request->txtAddress;
+				$patient->txtAddress = $address;
 				$patient->boolStatus = 1;
 				$patient->dateBirthday = $request->dateBirthday;
 				$strStatus = $patient->createPatient();
@@ -48,14 +49,14 @@
 
 			$patientList = Patient::where('boolStatus', 1)
 								->get();
-			return view('view-patient')->with('patientList', $patientList);
+			return view('viewPatient')->with('patientList', $patientList);
 
 		}
 
 		public function showPatientInfo(Request $request){
 
 			$patient = Patient::getPatient($request->patientId);
-			return view('updatePatient')->with('patient', $patient);
+			return response()->json($patient);
 
 		}
 

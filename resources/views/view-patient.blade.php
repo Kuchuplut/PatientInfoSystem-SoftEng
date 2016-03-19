@@ -2,7 +2,7 @@
 @section('navbar')
 <li><a class="waves-effect waves-light btn blue darken-4 white-text" href="">VIEW PATIENT</a></li>
 <li><a class="waves-effect waves-light btn blue darken-4 white-text" href="">REPORTS</a></li>
-<li><a class="waves-effect waves-light btn blue darken-4 white-text" href="">CHECK UP</a></li>
+<li><a class="waves-effect waves-light btn blue darken-4 white-text" href="/checkup">CHECK UP</a></li>
 @endsection
 
 @section('mainBody')
@@ -35,9 +35,12 @@
 		                <td>{!! $patient->created_at !!}</td>
 		                <td><button href="#updatePatient" class="modal-trigger">View</button></td>
 		                <td> 
-			                <a href="#updatePatient" class="modal-trigger"><i class="material-icons blue-text text-darken-3">mode_edit</i></a>
-			                <a href=""><i class="material-icons red-text">delete</i></a>
-			                 <a href=""><i class="material-icons green-text">payment</i></a>
+			                <a onclick="updatePatient(this.value)" class="modal-trigger" value="{!! $patient->patientId !!}"><i class="material-icons blue-text text-darken-3">mode_edit</i></a>
+			                <form action="/deactivatePatient" method="POST">
+			                	<input type="hidden" name="patientId" value="{!! $patient->patientId !!}">
+			                	<button type="submit" name="action" ><i class="material-icons red-text">delete</i></button>
+			                </form>
+			                <a href=""><i class="material-icons green-text">payment</i></a>
 		                </td>
 		            </tr>
 		            @endforeach
@@ -62,24 +65,19 @@
 	                  <form class="col s12 " action="/createPatient" method="post" enctype="multipart/form-data">
 	                    <div class="row">
 
-	                      <div class="input-field col s12">
-	                      <input id="studentNo" type="text" class="validate" value="001" name="student.strStudentCode">
-	                      <label for="studentNo">Patient Number</label>
-	                      </div>
-
 	                      <h6 class="col s12">Name</h6>
 	                      <div class="input-field col s4">
-	                      <input id="firstName" type="text" class="validate" name="student.name.strFirstName" required>
+	                      <input id="firstName" type="text" class="validate" name="strFirstName" required>
 	                      <label for="firstName">First Name</label>
 	                      </div>
 
 	                      <div class="input-field col s4">
-	                      <input id="middleName" type="text" class="validate" name="student.name.strMiddleName">
+	                      <input id="middleName" type="text" class="validate" name="strMiddleName">
 	                      <label for="middleNmame">Middle Name</label>
 	                      </div>
 
 	                      <div class="input-field col s4">
-	                      <input id="lastName" type="text" class="validate" name="student.name.strLastName" required>
+	                      <input id="lastName" type="text" class="validate" name="strLastName" required>
 	                      <label for="lastName">Last Name</label>
 	                      </div>
 
@@ -87,22 +85,22 @@
 	                      <h6 class="col s6">Gender</h6>
 
 	                      <div class="col s6">
-	                        <input type="date" class="datepicker" id="bday" name="student.birthday" required>
+	                        <input type="date" class="datepicker" id="bday" name="dateBirthday" required>
 	                      </div>
 
 	                      <script type="text/javascript">
 	                      $('.datepicker').pickadate({
 	                          selectMonths: true, // Creates a dropdown to control month
 	                          selectYears: 15 // Creates a dropdown of 15 years to control year
-	                        });fa
+	                        });
 	                      </script>
 
 	                      <div class="col s6">
 	                        <p>
-	                          <input name="student.strGender" type="radio" id="male" value="Male"/>
+	                          <input name="strGender" type="radio" id="male" value="Male"/>
 	                          <label for="male">Male</label>
 	                        
-	                          <input name="student.strGender" type="radio" id="female" value="Female"/>
+	                          <input name="strGender" type="radio" id="female" value="Female"/>
 	                          <label for="female">Female</label>
 	                        </p>
 	                      </div>
@@ -110,53 +108,41 @@
 	                      <h6 class="col s12">Address</h6>
 
 	                      <div class="input-field col s3">
-	                      <input id="houseNO" type="text" class="validate" name="student.address.strHouseNo" required>
+	                      <input id="houseNO" type="text" class="validate" name="strHouseNo" required>
 	                      <label for="houseNO">Number</label>
 	                      </div>
 
 	                      <div class="input-field col s3">
-	                      <input id="street" type="text" class="validate" name="student.address.strStreet" required>
+	                      <input id="street" type="text" class="validate" name="strStreet" required>
 	                      <label for="street">Street</label>
 	                      </div>
 
 	                      <div class="input-field col s3">
-	                      <input id="brgy" type="text" class="validate" name="student.address.strBarangay" required>
+	                      <input id="brgy" type="text" class="validate" name="strBarangay" required>
 	                      <label for="brgy">Barangay</label>
 	                      </div>
 
 	                      <div class="input-field col s3">
-	                      <input placeholder="(optional)"id="subd" type="text" class="validate" name="student.address.strSubdivision">
+	                      <input placeholder="(optional)"id="subd" type="text" class="validate" name="strSubdivision">
 	                      <label for="subd">Subdivision</label>
 	                      </div>
 
 
 	                      <div class="input-field col s6">
-	                      <input id="city" type="text" class="validate" name="student.address.strCity" required>
+	                      <input id="city" type="text" class="validate" name="strCity" required>
 	                      <label for="city">City</label>
 	                      </div>
 
 	                      <div class="input-field col s6">
-	                      <input id="province" type="text" class="validate" name="student.address.strProvince" required>
+	                      <input id="province" type="text" class="validate" name="strProvince" required>
 	                      <label for="province">Province</label>
 	                      </div>
 
 	                      <h6 class="col s12">Contact Information</h6>
 
 	                      <div class="input-field col s6">
-	                      <input id="email" type="email" class="validate" name="student.strEmail" required>
-	                      <label for="email">E-mail Address</label>
-	                      </div>
-
-	                      <div class="input-field col s6">
-	                      <input id="contanctNo" type="text" class="validate" name="student.strContactNo"required>
+	                      <input id="contanctNo" type="text" class="validate" name="strContactNo"required>
 	                      <label for="contanctNo">Contact No.</label>
-	                      </div>
-
-	                      <div class="row">
-	                        <div class="input-field col s12">
-	                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-	                        <label for="textarea1">Diagnosis</label>
-	                        </div>
 	                      </div>
 	                  
 	                      <div class="col s12">
@@ -192,104 +178,50 @@
 	  <div id="updatePatient" class="modal">
 	    <div class="modal-content">
 	     <h4 class="col s12 blue-text text-darken-2">Update Patient</h4>
-	                   <form class="col s12 " action="signupSubmit" method="post" enctype="multipart/form-data">
+	                   <form class="col s12 " action="/updatePatient" method="post" enctype="multipart/form-data">
 	                     <div class="row">
-
-	                       <div class="input-field col s12">
-	                       <input id="studentNo" type="text" class="validate" value="001" name="student.strStudentCode">
-	                       <label for="studentNo">Patient Number</label>
-	                       </div>
 
 	                       <h6 class="col s12">Name</h6>
 	                       <div class="input-field col s4">
-	                       <input id="firstName" type="text" class="validate" name="student.name.strFirstName" required>
-	                       <label for="firstName">First Name</label>
+	                       <input id="firstName_update" type="text" class="validate" name="strFirstName" required>
+	                       <label for="firstName_update">First Name</label>
 	                       </div>
 
 	                       <div class="input-field col s4">
-	                       <input id="middleName" type="text" class="validate" name="student.name.strMiddleName">
-	                       <label for="middleNmame">Middle Name</label>
+	                       <input id="middleName_update" type="text" class="validate" name="strMiddleName">
+	                       <label for="middleNmame_update">Middle Name</label>
 	                       </div>
 
 	                       <div class="input-field col s4">
-	                       <input id="lastName" type="text" class="validate" name="student.name.strLastName" required>
-	                       <label for="lastName">Last Name</label>
+	                       <input id="lastName_update" type="text" class="validate" name="strLastName" required>
+	                       <label for="lastName_update">Last Name</label>
 	                       </div>
 
 	                       <h6 class="col s6">Birthday</h6>
-	                       <h6 class="col s6">Gender</h6>
 
 	                       <div class="col s6">
-	                         <input type="date" class="datepicker" id="bday" name="student.birthday" required>
+	                         <input type="date" class="datepicker" id="bday_update" name="datebirthday" required>
 	                       </div>
 
 	                       <script type="text/javascript">
 	                       $('.datepicker').pickadate({
 	                           selectMonths: true, // Creates a dropdown to control month
 	                           selectYears: 15 // Creates a dropdown of 15 years to control year
-	                         });fa
+	                         });
 	                       </script>
-
-	                       <div class="col s6">
-	                         <p>
-	                           <input name="student.strGender" type="radio" id="male" value="Male"/>
-	                           <label for="male">Male</label>
-	                         
-	                           <input name="student.strGender" type="radio" id="female" value="Female"/>
-	                           <label for="female">Female</label>
-	                         </p>
-	                       </div>
 
 	                       <h6 class="col s12">Address</h6>
 
 	                       <div class="input-field col s3">
-	                       <input id="houseNO" type="text" class="validate" name="student.address.strHouseNo" required>
-	                       <label for="houseNO">Number</label>
-	                       </div>
-
-	                       <div class="input-field col s3">
-	                       <input id="street" type="text" class="validate" name="student.address.strStreet" required>
-	                       <label for="street">Street</label>
-	                       </div>
-
-	                       <div class="input-field col s3">
-	                       <input id="brgy" type="text" class="validate" name="student.address.strBarangay" required>
-	                       <label for="brgy">Barangay</label>
-	                       </div>
-
-	                       <div class="input-field col s3">
-	                       <input placeholder="(optional)"id="subd" type="text" class="validate" name="student.address.strSubdivision">
-	                       <label for="subd">Subdivision</label>
-	                       </div>
-
-
-	                       <div class="input-field col s6">
-	                       <input id="city" type="text" class="validate" name="student.address.strCity" required>
-	                       <label for="city">City</label>
-	                       </div>
-
-	                       <div class="input-field col s6">
-	                       <input id="province" type="text" class="validate" name="student.address.strProvince" required>
-	                       <label for="province">Province</label>
+	                       <input id="address_update" type="text" class="validate" name="txtAddress" required>
+	                       <label for="address_update">Address</label>
 	                       </div>
 
 	                       <h6 class="col s12">Contact Information</h6>
 
 	                       <div class="input-field col s6">
-	                       <input id="email" type="email" class="validate" name="student.strEmail" required>
-	                       <label for="email">E-mail Address</label>
-	                       </div>
-
-	                       <div class="input-field col s6">
-	                       <input id="contanctNo" type="text" class="validate" name="student.strContactNo"required>
-	                       <label for="contanctNo">Contact No.</label>
-	                       </div>
-
-	                       <div class="row">
-	                         <div class="input-field col s12">
-	                         <textarea id="textarea1" class="materialize-textarea"></textarea>
-	                         <label for="textarea1">Diagnosis</label>
-	                         </div>
+	                       <input id="contanctNo_update" type="text" class="validate" name="strContactNo"required>
+	                       <label for="contanctNo_update">Contact No.</label>
 	                       </div>
 	                   
 	                       <div class="col s12">
@@ -304,7 +236,7 @@
 	                       </div>
 
 	                       <div class="col s6">
-	                         <a class="btn-large waves-effect waves-light red" href="index.jsp">CANCEL
+	                         <a class="btn-large waves-effect waves-light red">CANCEL
 	                         <i class="material-icons right">cancel</i>
 	                         </a>
 	                       </div>
@@ -321,6 +253,8 @@
 	             </div>
 	  </div>
 
+	  
+
 </article>
 </div>
 
@@ -329,5 +263,27 @@
 		width: 1000px !important;
 	}
 </style>
+
+<script type="text/javascript">
+	function updatePatient(id){
+
+		$.ajax({
+			type: "GET",
+			url: "updatePatient",
+			data: {
+				"patientId" : id
+			},
+			dataType: "json",
+			success: function(data){
+				$('#updatePatient').openModal();
+				console.log(data);
+			},
+			error:function(xhr){
+
+			}
+		});
+
+	}
+</script>
 
 @endsection

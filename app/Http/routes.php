@@ -23,11 +23,15 @@ Route::get('/updatePatient', 'PatientController@showPatientInfo');
 
 Route::post('/updatePatient', 'PatientController@updatePatientInfo');
 
-Route::get('/deactivatePatient', 'PatientController@deactivatePatient');
+Route::post('/deactivatePatient', 'PatientController@deactivatePatient');
 
 Route::get('/add-diagnosis', 'MedicalRecordController@getPatientInfo');
 
 Route::post('/add-diagnosis', 'MedicalRecordController@createMedicalRecord');
+
+Route::get('/checkup', function(){
+	return view('check-up');
+});
 
 Route::get('/view-medical-history', 'PatientController@viewMedicalHistory');
 
