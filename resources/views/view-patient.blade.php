@@ -389,7 +389,13 @@
 </div>
 
 <style type="text/css">
-	#modal1{
+	#addPatient{
+		width: 1000px !important;
+	}
+	#updatePatient{
+		width: 1000px !important;
+	}
+	#addDiagnosis{
 		width: 1000px !important;
 	}
 </style>
