@@ -31,6 +31,7 @@
  		      <ul class="right hide-on-med-and-down" align="middle">
  		      	
       			<li><a class="waves-effect waves-light btn blue darken-4 white-text modal-trigger" href="#modal1">LOG IN</a></li>
+      			@yield('navbar')
  		      </ul>
  		    </div>
  		  </nav>
