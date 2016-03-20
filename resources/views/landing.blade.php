@@ -2,10 +2,14 @@
 @section('mainBody')
 <div id="index-banner" class="parallax-container section scrollspy">
 
+@section('navbar')
+  
+            <li><a class="waves-effect waves-light btn blue darken-4 white-text modal-trigger" href="#modal1">LOG IN</a></li>
+@endsection
     <div class="row" style="margin-top: 10px;">
       <div class="col s12" align="middle">
         <img src="pictures/logo.png" width="400" height="400"><br>
-        <h1 class="white-text thin">Toad's Information System</h1>
+        <h1 class="white-text thin">Patient's Information System</h1>
         <h4 class="white-text light center" >Patient Information System with Blood Pressure monitoring system</h4>
         <div class="row">
           <div class="col s6">
@@ -30,17 +34,12 @@
               
           </div>
         </article>  <!--END OF MAIN--> 
-            <aside class="aside aside-1">
-               
-            </aside>
-            <aside class="aside aside-2">
-
-            </aside>
+         
     </div>  
      <div class="parallax blue darken-4"><img src="pictures/bg1.jpg"> </div>
   </div>
 
-
+<!--
   <div class="container">
     <div class="section scrollspy" id="ourWorld">
 
@@ -96,5 +95,5 @@
 
       </div>
     </div>
-  </div>
+  </div>-->
   @endsection

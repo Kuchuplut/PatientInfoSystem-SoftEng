@@ -16,6 +16,7 @@
  		<link rel="shortcut icon" href="pictures/logo.png" />
 
  		<!--  Scripts-->
+ 		<script type="text/javascript" src="{!! asset('js/addTest.js') !!}"></script>
  		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
  		<script src="{!! asset('js/jquery-2.1.1.min.js') !!}"></script>
     	<script src="{!! asset('js/jquery-1.12.0.min.js') !!}"></script>
@@ -30,7 +31,6 @@
 
  		      <ul class="right hide-on-med-and-down" align="middle">
  		      	
-      			<li><a class="waves-effect waves-light btn blue darken-4 white-text modal-trigger" href="#modal1">LOG IN</a></li>
       			@yield('navbar')
  		      </ul>
  		    </div>
@@ -46,7 +46,7 @@
  	    <div class="modal-content">
  	      <h4 class="blue-text text-darken-4">Log In</h4>
  	      <div class="container">
- 	      	<form action="login.php" method="get">
+ 	      	<form method="get">
  	      		<div class="row">
  	      			<div class="input-field col s6">
  	      			<input id="userName" type="text" class="validate" name="username" required>
@@ -61,9 +61,10 @@
  	      </div>
  	    </div>
  	    <div class="modal-footer">
- 	      <a href="maintenance.html" class=" modal-action modal-close waves-effect waves-light btn blue darken-4" type="submit">SUBMIT</a>
+ 	      <a href="/view-all-patient" class=" modal-action modal-close waves-effect waves-light btn blue darken-4" type="submit">SUBMIT</a>
  	    </div>
  	  </div>
+
 
  	  <script type="text/javascript">
  	  	$(document).ready(function(){

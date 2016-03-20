@@ -30,7 +30,7 @@
 				$strStatus = "error";
 			}
 			if ($strStatus === "success"){
-				return view('success')->with('patient', $patient);
+				return redirect()->action('PatientController@getAllPatient');
 			}
 			
 		}
@@ -40,8 +40,7 @@
 
 			$patient= Patient::getPatient($request->patientId);
 			$medicalRecords = MedicalRecord::getAllMedicalRecord($patient->patientId);
-			return view('view-medical-history')->with('patient', $patient)
-						->with('medicalRecords', $medicalRecords);
+			return response()->json($medicalRecords);
 
 		}
 
@@ -49,7 +48,7 @@
 
 			$patientList = Patient::where('boolStatus', 1)
 								->get();
-			return view('viewPatient')->with('patientList', $patientList);
+			return view('view-patient')->with('patientList', $patientList);
 
 		}
 

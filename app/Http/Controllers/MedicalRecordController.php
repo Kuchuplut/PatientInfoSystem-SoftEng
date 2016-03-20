@@ -18,16 +18,18 @@
 			try{
 				$strStatus;
 				$medicalRecord = new MedicalRecord;
-				$medicalRecord->patientIdFK = $request->patientId;
+				$medicalRecord->patientIdFK = $request->patientId_diagnosis;
 				$medicalRecord->txtDiagnosis = $request->txtDiagnosis; 
 
 				$strStatus = $medicalRecord->createMedicalRecord();
 			}catch(Exception $e){
 				dd($e);
 				$strStatus = "error";
+
 			}
+	
 			if ($strStatus === "success"){
-				return view('success-medical')->with('MedicalRecord', $medicalRecord);
+				return redirect()->action('PatientController@getAllPatient');
 			}
 			
 		}

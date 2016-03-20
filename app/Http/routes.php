@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('view-patient');
+    return view('landing');
 });
 
 Route::post('/createPatient', 'PatientController@createPatient');
@@ -29,11 +29,8 @@ Route::get('/add-diagnosis', 'MedicalRecordController@getPatientInfo');
 
 Route::post('/add-diagnosis', 'MedicalRecordController@createMedicalRecord');
 
-Route::get('/checkup', function(){
-	return view('check-up');
-});
-
 Route::get('/view-medical-history', 'PatientController@viewMedicalHistory');
+
 
 /*
 |--------------------------------------------------------------------------
