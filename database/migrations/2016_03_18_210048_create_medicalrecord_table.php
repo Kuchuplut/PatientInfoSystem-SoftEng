@@ -16,9 +16,11 @@ class CreateMedicalrecordTable extends Migration
             $table->engine = "InnoDB";
             $table->increments('medicalRecordsId');
             $table->text('txtDiagnosis');
+            $table->integer('doctorIdFK')->unsigned();
             $table->timestamps();
             
             $table->integer('patientIdFK')->unsigned();
+            $table->foreign('doctorIdFK')->references('doctorId')->on('tblDoctor');
             $table->foreign('patientIdFK')->references('patientId')->on('tblPatient');
 
         });
