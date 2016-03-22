@@ -31,6 +31,13 @@ Route::post('/add-diagnosis', 'MedicalRecordController@createMedicalRecord');
 
 Route::get('/view-medical-history', 'PatientController@viewMedicalHistory');
 
+Route::get('/sign-up', function(){
+	return view('doctor-sign-up');
+});
+
+Route::post('/sign-up', 'DoctorController@createDoctor');
+
+Route::post('/login', 'DoctorController@loginDoctor');
 
 /*
 |--------------------------------------------------------------------------

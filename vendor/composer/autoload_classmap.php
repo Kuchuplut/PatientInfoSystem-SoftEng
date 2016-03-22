@@ -10,6 +10,7 @@ return array(
     'CreateMedicalrecordTable' => $baseDir . '/database/migrations/2016_03_18_210048_create_medicalrecord_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePatientTable' => $baseDir . '/database/migrations/2016_03_18_175509_create_patient_table.php',
+    'CreateSessionsTable' => $baseDir . '/database/migrations/2016_03_22_053817_create_sessions_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

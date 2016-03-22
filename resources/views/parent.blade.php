@@ -46,14 +46,14 @@
  	    <div class="modal-content">
  	      <h4 class="blue-text text-darken-4">Log In</h4>
  	      <div class="container">
- 	      	<form method="get">
+ 	      	<form method="post" action="/login">
  	      		<div class="row">
  	      			<div class="input-field col s6">
- 	      			<input id="userName" type="text" class="validate" name="username" required>
+ 	      			<input id="userName" type="text" class="validate" name="strUsername" required>
  	      			<label for="userName">Username</label>
  	      			</div>
  	      			<div class="input-field col s6">
- 	      			<input id="password" type="password" class="validate" name="username" required>
+ 	      			<input id="password" type="password" class="validate" name="strPassword" required>
  	      			<label for="password">Password</label>
  	      			</div>
  	      		</div>

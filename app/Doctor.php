@@ -8,7 +8,7 @@
 
 		protected $table = 'tblDoctor';
 
-		public function create(){
+		public function createDoctor(){
 
 			$this->save();
 			return "success";
@@ -26,6 +26,20 @@
 				return "failed";
 			}
 
+		}
+
+		public function getId(){
+			$doctor = Doctor::where('strFirstName', $this->strFirstName)
+							->where('strMiddleName', $this->strMiddleName)
+							->where('strLastName', $this->strLastName)
+							->first();
+			return $doctor->doctorId;
+		}
+
+		public function getIdByUsername(){
+			$doctor = Doctor::where('strUsername', $this->strUsername)
+							->first();
+			return $doctor->doctorId;
 		}
 
 	}

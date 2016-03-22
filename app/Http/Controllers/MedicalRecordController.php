@@ -20,7 +20,6 @@
 				$medicalRecord = new MedicalRecord;
 				$medicalRecord->patientIdFK = $request->patientId_diagnosis;
 				$medicalRecord->txtDiagnosis = $request->txtDiagnosis; 
-				$medicalRecord->doctorIdFK = session()->get('doctorId');
 
 				$strStatus = $medicalRecord->createMedicalRecord();
 			}catch(Exception $e){
@@ -45,4 +44,3 @@
 	
 
 	}
-?>
