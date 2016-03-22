@@ -5,6 +5,7 @@
 @section('navbar')
   
             <li><a class="waves-effect waves-light btn blue darken-4 white-text modal-trigger" href="#modal1">LOG IN</a></li>
+            <li><a class="blue-text text-darken-4" href="#">SIGN UP</a></li>
 @endsection
     <div class="row" style="margin-top: 10px;">
       <div class="col s12" align="middle">

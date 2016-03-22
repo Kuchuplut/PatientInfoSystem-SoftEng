@@ -65,7 +65,6 @@
                 </div>
                 
               </div>
-              <s:token />
             </form>
         </div>
       </article>  <!--END OF MAIN--> 
